@@ -1,0 +1,26 @@
+<div>
+<h1>Login</h1>
+    <form class="form-horizontal"> 
+        <div class="form-group" ng-show="mostraLogin">
+            <div class="alert alert-danger" role="alert" ><strong>{{messaggio}}</strong></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Username: </label>
+                <div class="col-sm-8">
+                    <input id="user" class="form-control" placeholder="username" ng-model="utente.username"/>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Password: </label>
+                <div class="col-sm-8">
+                    <input type="password" id="psw" class="form-control" placeholder="password" ng-model="utente.password"/>
+                </div> 
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-9 col-sm-3">
+                <button type="submit" class="btn btn-info" ng-click="login(utente)" >Login</button>
+            </div>    
+        </div>
+    </form>
+    <h1><a href="#/registrazione">Registrati</a></h1>
+</div>
