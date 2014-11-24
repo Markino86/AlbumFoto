@@ -1,0 +1,14 @@
+<h1>Lista degli utenti</h1>
+<div class="col-md-5">
+<table class="table table-bordered centrato">
+    <thead>
+        <tr>
+            <th>Utente</th>
+        </tr>    
+    </thead>
+        <tr ng-repeat="utente in utenti">
+            <td>{{utente.username}}</td>
+        </tr>
+</table>
+</div>    
+<div ng-show="mostraNoUtenti">{{messNoUtenti}}</div>

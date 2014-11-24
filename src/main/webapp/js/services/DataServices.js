@@ -25,25 +25,30 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                             stampaListaAlbum(data);
                         });
             },
-
-            aggiungiFoto = function(nomeAlbum, file, confermaUpload) {
-
-                $http.post('salvafoto.do', {url: file, album: nomeAlbum}).
-                        success(function(data, status, headers, config) {
-                            confermaUpload("success");
-                        });
-            },
-            uploadFileToUrl = function(file, uploadUrl) {
+            uploadFileToUrl = function(file, uploadUrl,nomeAlbum,username,confermaUpload) {
                 var fd = new FormData();
                 fd.append('file', file);
+                fd.append('nomeAlbum', nomeAlbum);
+                fd.append('username', username);
                 $http.post(uploadUrl, fd, {
                     transformRequest: angular.identity,
-                    withCredentials: true,
-                    headers: {'Content-Type': 'multipart/form-data'}
+                    headers: {'Content-Type': undefined}
                     }).
                         success(function(data, status, headers, config) {
-                            confermaUpload("success");
+                            confermaUpload(data);
                         });
+            },
+            listaFoto = function(nomeAlbum,confermaVisualizza) {
+                $http.get('listaFoto.do', {params: {nomeAlbum : nomeAlbum}}).
+                        success(function(data, status, headers, config) {
+                           confermaVisualizza(data); 
+                });
+            },
+            listaUtenti = function(callbackUtenti) {
+                $http.get('listaUtenti.do').
+                        success(function(data, status, headers, config) {
+                           callbackUtenti(data); 
+                });
             };
 
     return {
@@ -51,8 +56,9 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         login: login,
         registrati: registrati,
         listaAlbum: listaAlbum,
-        aggiungiFoto: aggiungiFoto,
-        uploadFileToUrl: uploadFileToUrl
+        uploadFileToUrl: uploadFileToUrl,
+        listaFoto : listaFoto,
+        listaUtenti : listaUtenti
     };
 
 });

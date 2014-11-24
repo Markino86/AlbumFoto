@@ -1,1 +1,10 @@
-
+<div class="logout">
+    <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
+    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+</div>
+<div ng-repeat ="foto in listaF">
+    <div class="foto">
+        <img src="../{{foto.nome}}" alt="">
+    </div>  
+</div>
+<div ng-show="mostraErrFoto">{{messaggioFoto}}</div>

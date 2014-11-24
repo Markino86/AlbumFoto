@@ -46,8 +46,6 @@
         <property name="username" value="albumfotografico" />
         <property name="password" value="albumfotografico" />
     </bean>
-         <bean id="multipartResolver"
-             class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-         </bean>
+         
          
 </beans>

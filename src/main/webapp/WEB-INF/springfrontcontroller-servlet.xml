@@ -12,6 +12,8 @@
     <context:component-scan base-package="it.cspnet.albumfotografico" />
     <mvc:annotation-driven/>
     <!-- dove sono i componenti che devono essere gestiti da spring-->
-  
+    <bean id="multipartResolver"
+             class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
      
 </beans>

@@ -1,11 +1,13 @@
 package it.cspnet.albumfotografico.servizi;
 
 import it.cspnet.albumfotografico.dao.AlbumDao;
+import it.cspnet.albumfotografico.dao.FotoDao;
 import it.cspnet.albumfotografico.dao.UtenteDao;
 import it.cspnet.albumfotografico.exception.UserNotFoundException;
 import it.cspnet.albumfotografico.exception.UtenteGiaPresenteException;
 import it.cspnet.albumfotografico.exception.WrongPasswordException;
 import it.cspnet.albumfotografico.model.Album;
+import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.Utente;
 import java.util.Collection;
 import javax.transaction.Transactional;
@@ -20,6 +22,8 @@ public class ServiziImpl implements Servizi {
     private AlbumDao albumDao;
     @Autowired
     private UtenteDao utenteDao;
+    @Autowired
+    private FotoDao fotoDao;
 
     public void setAlbumDao(AlbumDao albumDao) {
         this.albumDao = albumDao;
@@ -27,6 +31,10 @@ public class ServiziImpl implements Servizi {
 
     public void creaAlbum(Album album) {
         this.albumDao.save(album);
+    }
+
+    public void setFotoDao(FotoDao fotoDao) {
+        this.fotoDao = fotoDao;
     }
 
     public void setUtenteDao(UtenteDao utenteDao) {
@@ -56,6 +64,20 @@ public class ServiziImpl implements Servizi {
 
     public Collection<Album> listaAlbum(String username) {
         return this.utenteDao.findOne(username).getAlbums();
+    }
+
+    public void salvaFoto(Foto foto, String nomeAlbum) {
+        foto.setAlbum(albumDao.findOne(nomeAlbum));
+        fotoDao.save(foto);
+    }
+
+    public Collection<Foto> listaFoto(String nomeAlbum) {
+        Album album = albumDao.findOne(nomeAlbum);
+        return fotoDao.findByAlbumEquals(album);
+    }
+
+    public Collection<Utente> listaUtenti() {
+        return utenteDao.findAll();
     }
 
 }

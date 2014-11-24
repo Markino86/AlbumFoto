@@ -14,6 +14,11 @@ albumFotografico.controller('HomeCtrl', function ($scope, dataServices, $locatio
         dataServices.creaAlbum(album, confermaCreazione);
     };
     dataServices.listaAlbum($sessionStorage.utente, stampaListaAlbum);
+    
+    $scope.logout = function(){
+        $sessionStorage.$reset();
+        $location.path('/login');    
+    };
    
 });
 

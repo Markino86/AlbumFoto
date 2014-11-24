@@ -18,9 +18,13 @@ albumFotografico.config(['$routeProvider',
                     templateUrl: 'partials/uploadFoto-partial.html',
                     controller: 'uploadFotoCtrl'
                 }).
-                when('/visualizzaFoto', {
+                when('/visualizzaFoto/:nomeAlbum', {
                     templateUrl: 'partials/visualizzaFoto-partial.html',
                     controller: 'visualizzaFotoCtrl'
+                }).
+                when('/loginAnonimo',{
+                   templateUrl:'partials/loginAnonimo-partial.html',
+                   controller: 'loginAnonimoCtrl'
                 }).        
                 otherwise({
                     redirectTo: '/login'

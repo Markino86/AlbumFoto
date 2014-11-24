@@ -1,23 +1,26 @@
-<form  class="form-horizontal">
-   <input type="text" name="album" id="album" ng-model="album.nome" />
-   <button class="btn btn-primary" type="submit" ng-click="creaAlbum(album)">Crea Album</button>
+<div class="logout">
+    <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
+    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+</div>
+<form>
+    <input class="inputCrea" type="text" name="album" id="album" ng-model="album.nome" />
+    <button class="btn btn-info" type="submit" ng-click="creaAlbum(album)">Crea Album</button>
 </form>
 
-
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>Album</th>
-        <th>Aggiungi foto</th>
-        <th>Visualizza immagini</th>
-    </tr>    
-    </thead>
-    <tr ng-repeat="album in lista">
-        <td>{{album.nome}}</td>
-        <td><a href="#/uploadFoto/{{album.nome}}"><img src="img/aggiungi.png" alt="aggiungi"/></a></td>
-        <td><a href="#/visualizzaFoto"><img src="img/visualizza.png" alt="visualizza"/></a></td>
-    </tr>
-</table>
-
-
+<div class="col-md-5">
+    <table class="table table-bordered centrato">
+        <thead>
+            <tr>
+                <th>Album</th>
+                <th>Aggiungi foto</th>
+                <th>Visualizza immagini</th>
+            </tr>    
+        </thead>
+        <tr ng-repeat="album in lista">
+            <td>{{album.nome}}</td>
+            <td><a href="#/uploadFoto/{{album.nome}}"><img class="imgTable" src="img/aggiungi.png" alt="aggiungi"/></a></td>
+            <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
+        </tr>
+    </table>
+</div>
 

@@ -1,3 +1,16 @@
-<input type="file" file-model="myFile"/>
-<button ng-click="uploadFile1()">upload me</button>
+<div class="logout">
+    <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
+    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+</div>
+
+<div>
+    <h1>Inserire il file da caricare</h1>
+    <form>
+        <input class="bottoneScegli" type="file" file-model="myFile"/><br/>
+        <button class="btn btn-info" ng-click="uploadFile()">Salva</button>
+    </form>
+    <div>
+        {{messaggio}}
+    </div>
+</div>
 
