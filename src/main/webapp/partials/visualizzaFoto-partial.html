@@ -1,10 +1,13 @@
-<div class="logout">
+<div class="logout" ng-show="mostraLogout()">
     <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
     <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
 </div>
+<div class="logout" ng-hide="mostraLogout()">
+    <a href="#/loginAnonimo"><span class="glyphicon glyphicon-home"></span> Home</a>
+</div>
 <div ng-repeat ="foto in listaF">
     <div class="foto">
-        <img src="../{{foto.nome}}" alt="">
+        <img src="../{{foto.nome}}" alt="foto">
     </div>  
 </div>
 <div ng-show="mostraErrFoto">{{messaggioFoto}}</div>

@@ -36,9 +36,11 @@ public class AlbumController {
             boolean result = false;
 
             try {
+                
                 dir.mkdir();
                 result = true;
             } catch (SecurityException se) {
+                jsonResult.setCodice(1);
                 jsonResult.setMessaggio("Security error");
                 return jsonResult;
             }
@@ -46,8 +48,9 @@ public class AlbumController {
                 System.out.println("DIR created");
             }
         }
+        jsonResult.setCodice(0);
         servizi.creaAlbum(album);
-        jsonResult.setMessaggio("ok");
+        jsonResult.setMessaggio("Album creato correttamente");
         return jsonResult;
     }
 

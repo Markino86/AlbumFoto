@@ -23,5 +23,7 @@ public interface Servizi {
     public Collection<Foto> listaFoto(String nomeAlbum);
 
     public Collection<Utente> listaUtenti();
+
+    public Collection<Album> albumUtente(String username);
    
 }

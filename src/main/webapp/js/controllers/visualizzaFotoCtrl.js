@@ -18,7 +18,13 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope,$routeParams, 
         $sessionStorage.$reset();
         $location.path('/login');    
     };
-
+    $scope.mostraLogout = function(){
+        if($sessionStorage.utente.username === undefined)
+                    return false;
+        else
+                    return true;
+            };
+       
 });
 
 

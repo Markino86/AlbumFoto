@@ -23,6 +23,7 @@ public class RegistrazioneController {
     JsonResult registrazioneUtente(@RequestBody Utente utente) {
         JsonResult jsr = new JsonResult();
         try {
+            jsr.setCodice(0);
             servizi.creaUtente(utente);
             jsr.setMessaggio("ok");
             String path = "C:/Albums";
@@ -44,7 +45,8 @@ public class RegistrazioneController {
                 }
             }
         } catch (UtenteGiaPresenteException ex) {
-            jsr.setMessaggio("utente gia' presente");
+            jsr.setCodice(1);
+            jsr.setMessaggio("Utente gia' presente");
         } finally {
             return jsr;
         }

@@ -29,6 +29,11 @@ public class FotoController {
         try {
             String path = "C:/Albums/" + username + "/" + nomeAlbum + "/";
             File fileCreato = new File (path + file.getOriginalFilename());
+            if(fileCreato.exists()){
+                js.setCodice(2);
+                js.setMessaggio("Il file:" + file.getOriginalFilename()+" è già presente nell'album" );
+                return js;
+            }
             file.transferTo(fileCreato);
             Foto foto = new Foto();
             foto.setNome("Albums/"+ username + "/" + nomeAlbum + "/" + file.getOriginalFilename());

@@ -1,7 +1,11 @@
 albumFotografico.controller('uploadFotoCtrl', function ($scope, $routeParams, dataServices, $location, $sessionStorage) {
     var confermaUpload = function (data) {
-            $scope.messaggio = data.messaggio;
-
+        if(data.codice===0)
+            toastr.success(data.messaggio);
+        else if(data.codice ===1)
+            toastr.error(data.messaggio);
+        else
+            toastr.warning(data.messaggio);
     };
     $scope.uploadFile = function(){
         var file = $scope.myFile;

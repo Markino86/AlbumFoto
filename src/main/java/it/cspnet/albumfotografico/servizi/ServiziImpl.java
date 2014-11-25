@@ -80,4 +80,9 @@ public class ServiziImpl implements Servizi {
         return utenteDao.findAll();
     }
 
+    public Collection<Album> albumUtente(String username) {
+        Utente u = utenteDao.findOne(username);
+        return albumDao.findByUtenteEquals(u);
+    }
+
 }
