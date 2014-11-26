@@ -7,19 +7,23 @@
     <button class="btn btn-info" type="submit" ng-click="creaAlbum(album)">Crea Album</button>
 </form>
 
-<div class="col-md-5">
+<div class="col-md-8">
     <table class="table table-bordered centrato">
         <thead>
             <tr>
                 <th>Album</th>
                 <th>Aggiungi foto</th>
                 <th>Visualizza immagini</th>
+                <th>Cambia visibilità</th>
+                <th>Elimina album</th>
             </tr>    
         </thead>
         <tr ng-repeat="album in lista">
             <td>{{album.nome}}</td>
             <td><a href="#/uploadFoto/{{album.nome}}"><img class="imgTable" src="img/aggiungi.png" alt="aggiungi"/></a></td>
             <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
+            <td><img class="imgTable" src="img/private-icon.png" alt="cambia" ng-click="cambiaProprieta(album)"/></td>
+            <td><a href="#"><img class="imgTable" src="img/elimina.png" alt="elimina"/></a></td>
         </tr>
     </table>
 </div>

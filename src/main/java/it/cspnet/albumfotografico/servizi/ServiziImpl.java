@@ -85,4 +85,14 @@ public class ServiziImpl implements Servizi {
         return albumDao.findByUtenteEquals(u);
     }
 
+    public Album cambiaProprieta(String nomeAlbum) {
+        Album album = albumDao.findOne(nomeAlbum);
+        if(album.getProprieta().equals("pubblico")){
+            album.setProprieta("privato");
+        }else{
+            album.setProprieta("pubblico");
+        }
+        return albumDao.save(album);
+    }
+
 }

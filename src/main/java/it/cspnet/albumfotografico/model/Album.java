@@ -74,7 +74,13 @@ public class Album implements Serializable {
         this.commenti = commenti;
     }
 
-    
+    public String getProprieta() {
+        return proprieta;
+    }
+
+    public void setProprieta(String proprieta) {
+        this.proprieta = proprieta;
+    }
     
     @Override
     public boolean equals(Object obj) {

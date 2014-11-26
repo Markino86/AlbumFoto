@@ -5,7 +5,7 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
             $route.reload();
         }
         else {
-            toast.error(data.messaggio)
+            toastr.error(data.messaggio)
         }
     }, stampaListaAlbum = function (risposta) {
         $scope.lista = risposta.risultato;
@@ -29,6 +29,14 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
             return false;
         }
         return true;
+     },callbackCambiaProprieta = function(data){
+         if(data.codice===0){
+          toastr.success(data.messaggio);
+            $route.reload();
+        }
+        else {
+            toastr.error(data.messaggio);
+        }
      }; 
     
     $scope.creaAlbum = function (album) {
@@ -38,6 +46,10 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
         }
     };
     dataServices.listaAlbum($sessionStorage.utente, stampaListaAlbum);
+    
+    $scope.cambiaProprieta = function(album){
+        dataServices.cambiaProprieta(album,callbackCambiaProprieta);
+    };
     
     $scope.logout = function(){
         $sessionStorage.$reset();

@@ -55,6 +55,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                             callbackAlbumUtente(data);
                 });
+            },
+            cambiaProprieta = function(album,callbackCambiaProprieta){
+                $http.put('cambiaProprieta.do',album).
+                        success(function(data,status,headers,config){
+                            callbackCambiaProprieta(data);
+                        });
             };
 
     return {
@@ -65,7 +71,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         uploadFileToUrl: uploadFileToUrl,
         listaFoto : listaFoto,
         listaUtenti : listaUtenti,
-        albumUtente : albumUtente
+        albumUtente : albumUtente,
+        cambiaProprieta : cambiaProprieta
     };
 
 });
