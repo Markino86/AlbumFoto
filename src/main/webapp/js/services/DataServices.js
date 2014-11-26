@@ -55,6 +55,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                             callbackAlbumUtente(data);
                 });
+            },
+            listaNomi = function(lettere,callbackNomi) {
+                $http.get('nomiUtenti.do',{params: {lettere : lettere}}).
+                        success(function(data, status, headers, config) {
+                            callbackNomi(data);
+                });
             };
 
     return {
@@ -65,7 +71,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         uploadFileToUrl: uploadFileToUrl,
         listaFoto : listaFoto,
         listaUtenti : listaUtenti,
-        albumUtente : albumUtente
+        albumUtente : albumUtente,
+        listaNomi : listaNomi
     };
 
 });

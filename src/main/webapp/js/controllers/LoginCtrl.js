@@ -1,4 +1,4 @@
-albumFotografico.controller('LoginCtrl', function($scope,$sessionStorage,$location,dataServices){
+albumFotografico.controller('LoginCtrl', function($scope,$route,$sessionStorage,$location,dataServices){
     var asyncCallbackLogin = function(risposta) {
                             if(risposta.codice === 0){ 
                                 $scope.$storage.utente = risposta.risultato;
@@ -34,7 +34,17 @@ albumFotografico.controller('LoginCtrl', function($scope,$sessionStorage,$locati
             return false;
         }
         return true;
-    };
+    },
+        callbackNomi = function(risposta) {
+                            if(risposta.codice === 0){ 
+                                $scope.mostraUtenti = true;
+                                $scope.nomiUtenti = risposta.risultato;
+                            }
+                            else{
+                                $scope.mostraUtenti = false;
+                                $scope.messaggio = risposta.messaggio;
+                            }
+        };
                         
     $scope.$storage = $sessionStorage.$default({
        utente: {} 
@@ -42,6 +52,13 @@ albumFotografico.controller('LoginCtrl', function($scope,$sessionStorage,$locati
     $scope.login = function(utente){
         if(isNotEmpty())
             dataServices.login(utente,asyncCallbackLogin);
+    };
+    
+    $scope.listaNomi = function(lettere) {
+        if(lettere === "")
+            $route.reload();
+        else
+            dataServices.listaNomi(lettere,callbackNomi);
     };
     
     return {
