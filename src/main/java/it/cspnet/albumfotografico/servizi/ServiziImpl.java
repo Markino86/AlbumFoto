@@ -1,12 +1,14 @@
 package it.cspnet.albumfotografico.servizi;
 
 import it.cspnet.albumfotografico.dao.AlbumDao;
+import it.cspnet.albumfotografico.dao.CommentoDao;
 import it.cspnet.albumfotografico.dao.FotoDao;
 import it.cspnet.albumfotografico.dao.UtenteDao;
 import it.cspnet.albumfotografico.exception.UserNotFoundException;
 import it.cspnet.albumfotografico.exception.UtenteGiaPresenteException;
 import it.cspnet.albumfotografico.exception.WrongPasswordException;
 import it.cspnet.albumfotografico.model.Album;
+import it.cspnet.albumfotografico.model.Commento;
 import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.Utente;
 import java.util.Collection;
@@ -24,6 +26,8 @@ public class ServiziImpl implements Servizi {
     private UtenteDao utenteDao;
     @Autowired
     private FotoDao fotoDao;
+    @Autowired
+    private CommentoDao commentoDao;
 
     public void setAlbumDao(AlbumDao albumDao) {
         this.albumDao = albumDao;
@@ -41,6 +45,10 @@ public class ServiziImpl implements Servizi {
         this.utenteDao = utenteDao;
     }
 
+    public void setCommentoDao(CommentoDao commentoDao) {
+        this.commentoDao = commentoDao;
+    }
+    
     public void creaUtente(Utente utente) throws UtenteGiaPresenteException {
         if (null != this.utenteDao.findOne(utente.getUsername())) {
             throw new UtenteGiaPresenteException();
@@ -87,6 +95,19 @@ public class ServiziImpl implements Servizi {
 
     public Collection<Utente> listaNomi(String lettere) {
         return utenteDao.findByUsernameContaining(lettere);
+    }
+
+    public Commento lasciaCommento(String commento, String nomeAlbum, String username) {
+//        public Commento lasciaCommento(String commento, String username) {
+        Album album = albumDao.findOne(nomeAlbum);
+//            Album album = albumDao.findOne("pp2");
+        Utente utente = utenteDao.findOne(username);
+        Commento c = new Commento();
+        c.setAlbum(album);        
+        c.setUtente(utente);
+        c.setTestoCommento(commento);
+        commentoDao.save(c);
+        return c;       
     }
 
 }

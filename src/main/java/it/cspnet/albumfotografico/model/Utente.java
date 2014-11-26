@@ -27,6 +27,7 @@ public class Utente implements Serializable {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "utente")
     private Set<Album> albums = new HashSet<Album>();
     
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "utente")
     private Set<Commento> commenti = new HashSet<Commento>();
 

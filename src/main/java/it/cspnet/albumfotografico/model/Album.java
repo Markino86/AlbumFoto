@@ -25,10 +25,12 @@ public class Album implements Serializable {
     @ManyToOne
     @JoinColumn(name = "USERNAME", nullable = false)
     private Utente utente;
+    
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Foto> foto = new HashSet<Foto>();
     
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Commento> commenti = new HashSet<Commento>();
 

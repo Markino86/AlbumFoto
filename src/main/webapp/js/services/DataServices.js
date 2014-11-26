@@ -61,12 +61,14 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                             callbackNomi(data);
                 });
-//            },
-//            lasciaCommento = function(commento, nomeAlbum, asyncCallbackCommento){
-//                $http.post('lasciaCommento.do', commento, {params: {nomeAlbum : nomeAlbum}}, $sessionStorage.utente).
-//                        success(function(data, status, headers, config) {
-//                            asyncCallbackCommento(data);
-//                });
+            },
+            inviaCommento = function(commento, nomeAlbum, username, asyncCallbackCommento){
+                $http.post('inviaCommento.do', commento, {params: {nomeAlbum : nomeAlbum, username : username}}).
+//            inviaCommento = function(commento, nomeAlbum, asyncCallbackCommento){
+//                $http.post('inviaCommento.do', commento, {params: {nomeAlbum : nomeAlbum}}, {params: {username : $sessionStorage.utente.username}}).
+                        success(function(data, status, headers, config) {
+                            asyncCallbackCommento(data);
+                });
             };
 
     return {
@@ -79,7 +81,7 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         listaUtenti : listaUtenti,
         albumUtente : albumUtente,
         listaNomi : listaNomi,
-//        lasciaCommento : lasciaCommento
+        inviaCommento : inviaCommento
     };
 
 });

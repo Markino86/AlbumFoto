@@ -48,7 +48,8 @@ albumFotografico.controller('LoginCtrl', function($scope,$route,$sessionStorage,
                         
     $scope.$storage = $sessionStorage.$default({
        utente: {} 
-    });                    
+    });    
+    
     $scope.login = function(utente){
         if(isNotEmpty())
             dataServices.login(utente,asyncCallbackLogin);

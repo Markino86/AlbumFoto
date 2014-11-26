@@ -5,6 +5,7 @@ import it.cspnet.albumfotografico.exception.UserNotFoundException;
 import it.cspnet.albumfotografico.exception.UtenteGiaPresenteException;
 import it.cspnet.albumfotografico.exception.WrongPasswordException;
 import it.cspnet.albumfotografico.model.Album;
+import it.cspnet.albumfotografico.model.Commento;
 import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.Utente;
 import java.util.Collection;
@@ -27,5 +28,9 @@ public interface Servizi {
     public Collection<Album> albumUtente(String username);
 
     public Collection<Utente> listaNomi(String lettere);
+
+    public Commento lasciaCommento(String commento, String nomeAlbum, String username);
+    
+//    public Commento lasciaCommento(String commento, String username);
    
 }

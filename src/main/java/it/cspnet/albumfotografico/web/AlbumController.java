@@ -1,7 +1,9 @@
 package it.cspnet.albumfotografico.web;
 
 import it.cspnet.albumfotografico.model.Album;
+import it.cspnet.albumfotografico.model.Commento;
 import it.cspnet.albumfotografico.model.JsonResult;
+import it.cspnet.albumfotografico.model.Utente;
 import it.cspnet.albumfotografico.servizi.Servizi;
 import java.io.File;
 import java.util.Collection;
@@ -26,17 +28,13 @@ public class AlbumController {
     @RequestMapping(name = "/creaAlbum", method = RequestMethod.POST)
     public @ResponseBody
     JsonResult creaAlbum(@RequestBody Album album) {
-
         JsonResult jsonResult = new JsonResult();
-
         String path = "C:/Albums/" + album.getUtente().getUsername() + "/";
         File dir = new File(path + album.getNome());
         if (!dir.exists()) {
             System.out.println("creating directory: " + dir.getName());
             boolean result = false;
-
             try {
-                
                 dir.mkdir();
                 result = true;
             } catch (SecurityException se) {
@@ -71,7 +69,27 @@ public class AlbumController {
         } finally {
             return jsonResult;
         }
-
     }
 
+    @RequestMapping(value = "/inviaCommento", method = RequestMethod.POST)
+    public @ResponseBody
+    JsonResult inviaCommento(@RequestBody String commento, HttpServletRequest req) {
+        JsonResult jsonResult = new JsonResult();
+        String nomeAlbum = req.getParameter("nomeAlbum");
+        //NON PRENDE USERNAME CHE PASSO
+        String username = req.getParameter("username");
+        try {
+            Commento c = servizi.lasciaCommento(commento, nomeAlbum, username);
+//            Commento c = servizi.lasciaCommento(commento, username);
+            jsonResult.setRisultato(c);
+            jsonResult.setCodice(0);
+            jsonResult.setMessaggio("ok");
+        } catch (Exception ex) {
+            jsonResult.setMessaggio("errore caricamento");
+            jsonResult.setCodice(1);
+        } finally {
+            return jsonResult;
+        }
+
+    }
 }

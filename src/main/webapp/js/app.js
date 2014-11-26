@@ -30,10 +30,10 @@ albumFotografico.config(['$routeProvider',
                     templateUrl: 'partials/loginAnonimo-partial.html',
                     controller: 'loginAnonimoCtrl'
                 }).
-//                when('/lasciaCommento/:nomeAlbum', {
-//                    templateUrl: 'partials/lasciaCommento-partial.html',
-//                    controller: 'CommentoCtrl'
-//                }).
+                when('/lasciaCommento/:nomeAlbum', {
+                    templateUrl: 'partials/lasciaCommento-partial.html',
+                    controller: 'CommentoCtrl'
+                }).
                 otherwise({
                     redirectTo: '/login'
 
