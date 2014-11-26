@@ -27,6 +27,9 @@ public interface Servizi {
 
     public Collection<Album> albumUtente(String username);
 
+    public Album cambiaProprieta(String nomeAlbum);
+
     public Collection<Utente> listaNomi(String lettere);
+
    
 }
