@@ -21,7 +21,7 @@ public class Album implements Serializable {
     @Column(name = "NOME", nullable = false)
     private String nome;
     @Column(name="PROPRIETA",nullable = false)
-    private String proprieta = "pubblico";
+    private String proprieta;
     @ManyToOne
     @JoinColumn(name = "USERNAME", nullable = false)
     private Utente utente;
@@ -51,6 +51,14 @@ public class Album implements Serializable {
         this.utente = utente;
     }
 
+    public String getProprieta() {
+        return proprieta;
+    }
+
+    public void setProprieta(String proprieta) {
+        this.proprieta = proprieta;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -18,20 +18,15 @@
     </div>    
 </nav>
 
-<div class="col-md-5">
-    <table class="table table-bordered centrato">
-        <thead>
-            <tr>
-                <th>Album</th>
-                <th>Aggiungi foto</th>
-                <th>Visualizza immagini</th>
-            </tr>    
-        </thead>
-        <tr ng-repeat="album in lista">
-            <td>{{album.nome}}</td>
-            <td><a href="#/uploadFoto/{{album.nome}}"><img class="imgTable" src="img/aggiungi.png" alt="aggiungi"/></a></td>
-            <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
-        </tr>
-    </table>
-</div>
+<form class="form-horizontal">
+    <input class="inputCrea" type="text" name="album" id="album" ng-model="album.nome" />
+    <br /> 
+    <fieldset>
+    <input type="radio" name="proprieta" value="pubblico" ng-model="album.proprieta"/> Pubblico
+    <br /> 
+    <input type="radio" name="proprieta" value="privato" ng-model="album.proprieta"/> Privato 
+    <br />
+    </fieldset>
+    <button class="btn btn-info" type="submit" ng-click="creaAlbum(album)">Crea Album</button>
+</form>
 

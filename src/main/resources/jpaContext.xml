@@ -9,8 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
     <context:annotation-config />
-	
-	
+		
     <jpa:repositories base-package="it.cspnet.albumfotografico" />
 	
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
@@ -27,7 +26,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-                <!--entry key="hibernate.hbm2ddl.auto" value="create"/-->
+                <!--<entry key="hibernate.hbm2ddl.auto" value="create"/-->
                 <entry key="hibernate.format_sql" value="true" />
             </map>
         </property>
