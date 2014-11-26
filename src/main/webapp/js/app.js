@@ -1,4 +1,4 @@
-var albumFotografico = angular.module('albumFotografico', ['ngRoute','ngStorage']);
+var albumFotografico = angular.module('albumFotografico', ['ngRoute', 'ngStorage']);
 albumFotografico.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
@@ -8,6 +8,10 @@ albumFotografico.config(['$routeProvider',
                 }).
                 when('/home', {
                     templateUrl: 'partials/home-partial.html',
+                    controller: 'HomeCtrl'
+                }).
+                when('/creaAlbum', {
+                    templateUrl: 'partials/creaAlbum-partial.html',
                     controller: 'HomeCtrl'
                 }).
                 when('/registrazione', {
@@ -22,27 +26,31 @@ albumFotografico.config(['$routeProvider',
                     templateUrl: 'partials/visualizzaFoto-partial.html',
                     controller: 'visualizzaFotoCtrl'
                 }).
-                when('/loginAnonimo',{
-                   templateUrl:'partials/loginAnonimo-partial.html',
-                   controller: 'loginAnonimoCtrl'
-                }).        
+                when('/loginAnonimo', {
+                    templateUrl: 'partials/loginAnonimo-partial.html',
+                    controller: 'loginAnonimoCtrl'
+                }).
+//                when('/lasciaCommento/:nomeAlbum', {
+//                    templateUrl: 'partials/lasciaCommento-partial.html',
+//                    controller: 'CommentoCtrl'
+//                }).
                 otherwise({
                     redirectTo: '/login'
 
                 });
     }]);
-albumFotografico.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-            
-            element.bind('change', function(){
-                scope.$apply(function(){
-                    modelSetter(scope, element[0].files[0]);
+albumFotografico.directive('fileModel', ['$parse', function($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function() {
+                    scope.$apply(function() {
+                        modelSetter(scope, element[0].files[0]);
+                    });
                 });
-            });
-        }
-    };
-}]);
+            }
+        };
+    }]);

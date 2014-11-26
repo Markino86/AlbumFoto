@@ -112,15 +112,28 @@ th{
     padding: 7px;
     text-align: center;
 }
-.reg{
+.cercautente{
     float: right;
-    margin-right: 40px;
+    margin-right: 100px;
     border: 2px solid #00cc33;
     border-radius: 10px;
-    margin-top : -170px;
+    margin-top : -250px;
+}
+.cercautente form{
+    float:left;
+    margin: 10px;
+}
+.cercautente table{
+    float:left;
+    margin-left:10px;
+    margin-bottom: 10px;
+    border-left: 1px solid #6699ff;
+    border-right: 1px solid #6699ff;
+    border-bottom: 1px solid #6699ff;
+    margin-top: -10px;
+    width: 155px;    
 }
 h2{
-    margin-left: 10px;
-    margin-right: 10px;
+   text-align: center;
 }
 

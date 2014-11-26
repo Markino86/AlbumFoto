@@ -94,5 +94,9 @@ public class ServiziImpl implements Servizi {
         }
         return albumDao.save(album);
     }
+    
+    public Collection<Utente> listaNomi(String lettere) {
+        return utenteDao.findByUsernameContaining(lettere);
+    }
 
 }

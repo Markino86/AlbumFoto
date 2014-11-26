@@ -88,7 +88,7 @@ public class AlbumController {
             js.setRisultato(albumDaModificare);
         }catch(Exception ex){
             js.setCodice(1);
-            js.setMessaggio("Impossibile cambiare la prprietà di visualizzazione");
+            js.setMessaggio("Impossibile cambiare la proprietà di visualizzazione");
         }finally{
             return js;
         }
