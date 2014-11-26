@@ -8,7 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,9 @@ public class Utente implements Serializable {
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "utente")
     private Set<Album> albums = new HashSet<Album>();
+    
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "utente")
+    private Set<Commento> commenti = new HashSet<Commento>();
 
     public Utente() {
     }
@@ -73,5 +78,15 @@ public class Utente implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Set<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(Set<Commento> commenti) {
+        this.commenti = commenti;
+    }
+
+  
 
 }
