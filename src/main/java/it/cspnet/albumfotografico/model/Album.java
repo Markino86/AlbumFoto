@@ -20,12 +20,17 @@ public class Album implements Serializable {
     @Id
     @Column(name = "NOME", nullable = false)
     private String nome;
+    @Column(name="PROPRIETA",nullable = false)
+    private String proprieta = "pubblico";
     @ManyToOne
     @JoinColumn(name = "USERNAME", nullable = false)
     private Utente utente;
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Foto> foto = new HashSet<Foto>();
+    
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
+    private Set<Commento> commenti = new HashSet<Commento>();
 
     public Album() {
     }
@@ -59,6 +64,14 @@ public class Album implements Serializable {
 
     public void setFoto(Set<Foto> foto) {
         this.foto = foto;
+    }
+
+    public Set<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(Set<Commento> commenti) {
+        this.commenti = commenti;
     }
 
     
