@@ -22,8 +22,20 @@
             </div>    
         </div>
     </form>
-<div class="reg">
-    <h2><a href="#/registrazione">Registrati</a></h2>
-    <h2><a href="#/loginAnonimo">Entra nel sito da utente anonimo</a></h2>
-</div>    
+    <div class="form-horizontal">
+        <h2><a href="#/registrazione">Registrati</a></h2>
+    </div>
+    <div class="cercautente">
+        <form action=" " class="form-prodotti">            
+            <h4>Ricerca utenti:</h4>         
+            <input type="text" placeholder="username" ng-model="lettere" ng-keyup="listaNomi(lettere)" />
+        </form>
+    <div ng-show="mostraUtenti">
+        <table>
+            <tr ng-repeat="nomeUtente in nomiUtenti">
+                <td>{{nomeUtente.username}}</td>
+            </tr>
+        </table> 
+    </div>
+    </div>
 </div>

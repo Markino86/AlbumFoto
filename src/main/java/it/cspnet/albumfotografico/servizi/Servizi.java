@@ -25,5 +25,7 @@ public interface Servizi {
     public Collection<Utente> listaUtenti();
 
     public Collection<Album> albumUtente(String username);
+
+    public Collection<Utente> listaNomi(String lettere);
    
 }
