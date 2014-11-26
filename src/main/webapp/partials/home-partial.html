@@ -18,13 +18,15 @@
     </div>    
 </nav>
 
-<div class="col-md-5">
+<div class="col-md-8">
     <table class="table table-bordered centrato">
         <thead>
             <tr>
                 <th>Album</th>
                 <th>Aggiungi foto</th>
                 <th>Visualizza immagini</th>
+                <th>Cambia visibilità</th>
+                <th>Elimina album</th>
                 <th>Lascia un commento</th>
             </tr>    
         </thead>
@@ -32,6 +34,8 @@
             <td>{{album.nome}}</td>
             <td><a href="#/uploadFoto/{{album.nome}}"><img class="imgTable" src="img/aggiungi.png" alt="aggiungi"/></a></td>
             <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
+            <td>{{album.proprieta}} <a ng-click="cambiaProprieta(album);"><img class="imgTable" src="img/private-icon.png" alt="cambia" /></a></td>
+            <td><img class="imgTable" src="img/elimina.png" alt="elimina"/></td>
             <td><a href="#/lasciaCommento/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
         </tr>
     </table>

@@ -29,7 +29,7 @@ public class Album implements Serializable {
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Foto> foto = new HashSet<Foto>();
-    
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Commento> commenti = new HashSet<Commento>();
@@ -84,8 +84,6 @@ public class Album implements Serializable {
         this.commenti = commenti;
     }
 
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

@@ -9,10 +9,12 @@ import java.io.File;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -68,6 +70,24 @@ public class AlbumController {
             jsonResult.setCodice(1);
         } finally {
             return jsonResult;
+        }
+    }
+    
+    @RequestMapping(name = "/cambiaProprieta",method = RequestMethod.PUT)
+    public @ResponseBody 
+    JsonResult cambiaProprieta(@RequestBody Album album){
+        JsonResult js = new JsonResult();
+        
+        try{
+            Album albumDaModificare = servizi.cambiaProprieta(album.getNome());
+            js.setCodice(0);
+            js.setMessaggio("Proprietà cambiata correttamente!");
+            js.setRisultato(albumDaModificare);
+        }catch(Exception ex){
+            js.setCodice(1);
+            js.setMessaggio("Impossibile cambiare la proprietà di visualizzazione");
+        }finally{
+            return js;
         }
     }
 
