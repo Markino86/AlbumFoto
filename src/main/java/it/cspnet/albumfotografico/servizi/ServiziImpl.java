@@ -99,4 +99,10 @@ public class ServiziImpl implements Servizi {
         return utenteDao.findByUsernameContaining(lettere);
     }
 
+    public void eliminaAlbum(String nome) {
+        Album albumDaCancellare = albumDao.findOne(nome);
+        fotoDao.delete(albumDaCancellare.getNome());
+        albumDao.delete(albumDaCancellare);
+    }
+
 }

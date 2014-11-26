@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -92,6 +93,15 @@ public class AlbumController {
         }finally{
             return js;
         }
+    }
+    
+    @RequestMapping(name="/eliminaAlbum",method = RequestMethod.DELETE)
+    public @ResponseBody JsonResult deleteAlbum(@RequestBody Album album){
+        JsonResult js = new JsonResult();
+        js.setCodice(0);
+        js.setMessaggio("Album eliminato correttamente");
+        servizi.eliminaAlbum(album.getNome());
+        return js;
     }
 
 }

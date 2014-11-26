@@ -62,12 +62,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                             callbackCambiaProprieta(data);
                         });
             },
-//            eliminaAlbum = function(album,callbackEliminaAlbum){
-//                $http.delete('eliminaAlbum.do',album).
-//                        success(function(data,status,headers,config){
-//                            callbackEliminaAlbum(data);
-//                        });
-//            },
+            eliminaAlbum = function(album,callbackEliminaAlbum){
+                $http.delete('eliminaAlbum.do',album).
+                        success(function(data,status,headers,config){
+                            callbackEliminaAlbum(data);
+                        });
+            },
             listaNomi = function(lettere,callbackNomi) {
                 $http.get('nomiUtenti.do',{params: {lettere : lettere}}).
                         success(function(data, status, headers, config) {
@@ -92,7 +92,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         listaUtenti : listaUtenti,
         albumUtente : albumUtente,
         cambiaProprieta : cambiaProprieta,
-        listaNomi : listaNomi
+        listaNomi : listaNomi,
+        eliminaAlbum : eliminaAlbum
 //        lasciaCommento : lasciaCommento
     };
 

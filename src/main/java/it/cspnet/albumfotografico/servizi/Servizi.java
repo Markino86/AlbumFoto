@@ -30,5 +30,7 @@ public interface Servizi {
 
     public Collection<Utente> listaNomi(String lettere);
 
+    public void eliminaAlbum(String nome);
+
    
 }

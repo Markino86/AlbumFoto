@@ -37,6 +37,11 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
         else {
             toastr.error(data.messaggio);
         }
+     },callbackEliminaAlbum = function(data){
+        if(data.codice===0)
+            $scope.messaggio = data.messaggio;
+            $location.path("/home");
+         
      }; 
     
     $scope.creaAlbum = function (album) {
@@ -49,6 +54,10 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
     
     $scope.cambiaProprieta = function(album){
         dataServices.cambiaProprieta(album,callbackCambiaProprieta);
+    };
+    
+    $scope.eliminaAlbum = function(album){
+        dataServices.eliminaAlbum(album,callbackEliminaAlbum);
     };
     
     $scope.logout = function(){
