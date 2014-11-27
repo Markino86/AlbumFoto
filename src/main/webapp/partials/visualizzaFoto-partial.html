@@ -6,8 +6,9 @@
     <a href="#/loginAnonimo"><span class="glyphicon glyphicon-home"></span> Home</a>
 </div>
 <div ng-repeat ="foto in listaF">
+   
     <div class="foto">
-        <img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
+        <a><button class="eliminaFoto" ng-click="eliminaSingleFoto(foto.nome);"><span class="glyphicon glyphicon-trash"></span></button><img src="../{{foto.nome}}" alt="foto +{{foto.nome}}"/></a>
     </div>  
 </div>
-<div ng-show="mostraErrFoto">{{messaggioFoto}}</div>
+<div class="noFoto" ng-show="mostraErrFoto">{{messaggioFoto}}</div>

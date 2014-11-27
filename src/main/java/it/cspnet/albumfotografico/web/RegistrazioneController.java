@@ -25,7 +25,7 @@ public class RegistrazioneController {
         try {
             jsr.setCodice(0);
             servizi.creaUtente(utente);
-            jsr.setMessaggio("ok");
+            jsr.setMessaggio("Utente registrato correttamente");
             String path = "C:/Albums";
             //creo la directory personale dell' utente
             File dir = new File(path + "/" + utente.getUsername());

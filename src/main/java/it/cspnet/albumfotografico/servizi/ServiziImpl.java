@@ -113,4 +113,8 @@ public class ServiziImpl implements Servizi {
         Album albumDaCancellare = albumDao.findOne(nome);
         albumDao.delete(albumDaCancellare); 
     }
+
+    public void eliminaSingleFoto(String nomeFoto) {
+        fotoDao.delete(fotoDao.findOne(nomeFoto));
+    }
 }

@@ -73,13 +73,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                             callbackNomi(data);
                 });
-//            },
-//            lasciaCommento = function(commento, nomeAlbum, asyncCallbackCommento){
-//                $http.post('lasciaCommento.do', commento, {params: {nomeAlbum : nomeAlbum}}, $sessionStorage.utente).
-//                        success(function(data, status, headers, config) {
-//                            asyncCallbackCommento(data);
-//                });
-
+            },
+            eliminaSingleFoto = function(nomeFoto,eliminaFotoCallback){
+             $http.delete('eliminaFoto.do?nomeFoto='+nomeFoto).
+                        success(function(data,status,headers,config){
+                            eliminaFotoCallback(data);
+                        });
             };
 
     return {
@@ -93,8 +92,9 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         albumUtente : albumUtente,
         cambiaProprieta : cambiaProprieta,
         listaNomi : listaNomi,
-        eliminaAlbum : eliminaAlbum
-//        lasciaCommento : lasciaCommento
+        eliminaAlbum : eliminaAlbum,
+        eliminaSingleFoto : eliminaSingleFoto
+
     };
 
 });
