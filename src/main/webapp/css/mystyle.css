@@ -136,3 +136,14 @@ th{
 h2{
    text-align: center;
 }
+.cercaHome{
+    float:left;
+    margin-left:363px;
+    margin-bottom: 10px;
+    border-left: 1px solid #6699ff;
+    border-right: 1px solid #6699ff;
+    border-bottom: 1px solid #6699ff;
+    margin-top: -38px;
+    width: 155px;  
+}
+
