@@ -4,6 +4,7 @@ import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.JsonResult;
 import it.cspnet.albumfotografico.servizi.Servizi;
 import java.io.File;
+import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,9 +54,36 @@ public class FotoController {
     JsonResult listaFoto(HttpServletRequest req ) {
         JsonResult js = new JsonResult();
         String nomeAlbum = req.getParameter("nomeAlbum");
+        Collection<Foto> foto = null;
         try {
-            js.setRisultato(servizi.listaFoto(nomeAlbum));
+            foto = servizi.listaFoto(nomeAlbum);
+            if(foto.isEmpty()){
+                js.setCodice(1);
+                js.setMessaggio("Nessuna foto nell'album");
+                return js;
+            }
+            js.setRisultato(foto);
             js.setCodice(0);
+            return js;
+        }catch (Exception ex) {
+            js.setCodice(1);
+            js.setMessaggio("Errore sul server!!");
+            return js;
+        }
+    }
+    
+    @RequestMapping(value = "/eliminaFoto",method = RequestMethod.DELETE)
+    public @ResponseBody
+    JsonResult eliminaSingleFoto(HttpServletRequest req){
+        JsonResult js = new JsonResult();
+        String nomeFoto = req.getParameter("nomeFoto");
+         try {
+            servizi.eliminaSingleFoto(nomeFoto);
+            String path = "C:/" + nomeFoto;
+            File dir = new File(path);
+            dir.delete();
+            js.setCodice(0);
+            js.setMessaggio("Foto eliminata con successo");
             return js;
         }
         catch (Exception ex) {
@@ -64,5 +92,4 @@ public class FotoController {
             return js;
         }
     }
-    
 }

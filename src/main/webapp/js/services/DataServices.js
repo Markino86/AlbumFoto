@@ -85,6 +85,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                            visualizzaCommentiCallback(data); 
                 });
+            },    
+            eliminaSingleFoto = function(nomeFoto,eliminaFotoCallback){
+             $http.delete('eliminaFoto.do?nomeFoto='+nomeFoto).
+                        success(function(data,status,headers,config){
+                            eliminaFotoCallback(data);
+                        });
             };
 
     return {
@@ -100,8 +106,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         listaNomi : listaNomi,
         inviaCommento : inviaCommento,
         visualizzaCommenti : visualizzaCommenti,
-        eliminaAlbum : eliminaAlbum
+        eliminaAlbum : eliminaAlbum,
+        eliminaSingleFoto : eliminaSingleFoto
     };
-
 });
 

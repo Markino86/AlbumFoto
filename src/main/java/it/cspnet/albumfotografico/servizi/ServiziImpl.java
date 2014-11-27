@@ -135,7 +135,8 @@ public class ServiziImpl implements Servizi {
         commentoDao.save(c);
         return c;
     }
-
+    
+    @Override
     public Collection<Commento> visualizzaCommenti(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
         return commentoDao.findByAlbum(album);
@@ -146,5 +147,9 @@ public class ServiziImpl implements Servizi {
         Album albumDaCancellare = albumDao.findOne(nome);
         albumDao.delete(albumDaCancellare); 
     }
-
+    
+    @Override
+    public void eliminaSingleFoto(String nomeFoto) {
+        fotoDao.delete(fotoDao.findOne(nomeFoto));
+    }
 }

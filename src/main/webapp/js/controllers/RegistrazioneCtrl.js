@@ -2,6 +2,7 @@ albumFotografico.controller('RegistrazioneCtrl', function($scope, dataServices, 
     var confermaCreazione = function(data) {
         if (data.codice===0) {
             $scope.registrazioKO = false;
+            toastr.success(data.messaggio);
             $location.path('/login');
         }
         else {
