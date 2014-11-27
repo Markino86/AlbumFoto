@@ -91,6 +91,12 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data,status,headers,config){
                             eliminaFotoCallback(data);
                         });
+            },
+            mostraElimina = function(nomeAlbum, username, mostraEliminaCallback){
+                $http.get('mostraElimina.do', {params: {nomeAlbum : nomeAlbum, username : username}}).
+                        success(function(data, status, headers, config){
+                            mostraEliminaCallback(data);
+                });        
             };
 
     return {
@@ -107,7 +113,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         inviaCommento : inviaCommento,
         visualizzaCommenti : visualizzaCommenti,
         eliminaAlbum : eliminaAlbum,
-        eliminaSingleFoto : eliminaSingleFoto
+        eliminaSingleFoto : eliminaSingleFoto,
+        mostraElimina : mostraElimina
        
     };
 });

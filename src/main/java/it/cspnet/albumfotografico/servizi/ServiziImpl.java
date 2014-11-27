@@ -160,4 +160,11 @@ public class ServiziImpl implements Servizi {
             commentoDao.delete(c);
         }
     }
+
+    @Override
+    public Album trovaAlbum(String nomeAlbum) {
+        return albumDao.findOne(nomeAlbum);
+    }
+
+    
 }

@@ -7,8 +7,8 @@
         <a href="#/loginAnonimo"><span class="glyphicon glyphicon-home"></span> Home</a>
     </div>
     <div ng-repeat ="foto in listaF">
-        <div class="foto">
-            <button class="eliminaFoto" ng-click="eliminaSingleFoto(foto.nome);"><span class="glyphicon glyphicon-trash"></span></button><img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
+        <div class="foto" >
+            <button class="eliminaFoto" ng-click="eliminaSingleFoto(foto.nome);" ng-show="mostraElimina"><span class="glyphicon glyphicon-trash"></span></button><img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
         </div>  
     </div>
     <div class="noFoto" ng-show="mostraErrFoto">{{messaggioFoto}}</div>

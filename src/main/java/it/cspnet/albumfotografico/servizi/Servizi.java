@@ -43,4 +43,6 @@ public interface Servizi {
     public void eliminaSingleFoto(String nomeFoto);
 
     public void eliminaCommentiAlbum(String nomeAlbum);
+
+    public Album trovaAlbum(String nomeAlbum);
 }
