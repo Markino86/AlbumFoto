@@ -12,6 +12,7 @@ import it.cspnet.albumfotografico.model.Commento;
 import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.Utente;
 import java.util.Collection;
+import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class ServiziImpl implements Servizi {
     public void creaAlbum(Album album) {
         this.albumDao.save(album);
     }
-
+    
     public void setFotoDao(FotoDao fotoDao) {
         this.fotoDao = fotoDao;
     }
@@ -106,6 +107,7 @@ public class ServiziImpl implements Servizi {
         if (album.getProprieta().equals("pubblico")) {
             album.setProprieta("privato");
         } else {
+
             album.setProprieta("pubblico");
         }
         return albumDao.save(album);
@@ -114,6 +116,13 @@ public class ServiziImpl implements Servizi {
     @Override
     public Collection<Utente> listaNomi(String lettere) {
         return utenteDao.findByUsernameContaining(lettere);
+    }
+    @Override
+    public void eliminaFotoAlbum(String nomeAlbum) {
+        Album albumDaCancellare = albumDao.findOne(nomeAlbum);        
+        for (Foto f : fotoDao.findByAlbumEquals(albumDaCancellare)){
+            fotoDao.delete(f);
+        }
     }
 
     public Commento lasciaCommento(String commento, String nomeAlbum, String username) {
@@ -130,6 +139,12 @@ public class ServiziImpl implements Servizi {
     public Collection<Commento> visualizzaCommenti(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
         return commentoDao.findByAlbum(album);
+    }
+
+    @Override
+    public void eliminaAlbum(String nome) {
+        Album albumDaCancellare = albumDao.findOne(nome);
+        albumDao.delete(albumDaCancellare); 
     }
 
 }

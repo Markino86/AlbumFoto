@@ -1,41 +1,47 @@
-<div class="logout" ng-show="mostraLogout()">
-    <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
-    <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-</div>
-<div class="logout" ng-hide="mostraLogout()">
-    <a href="#/loginAnonimo"><span class="glyphicon glyphicon-home"></span> Home</a>
-</div>
-<div ng-repeat ="foto in listaF">
-    <div class="foto">
-        <img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
-    </div>  
-</div>
-<div ng-show="mostraErrFoto">{{messaggioFoto}}</div>
-
 <div>
-    <h1>Lascia Commento</h1>
-    <form name="lasciaCommento" class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Commento:</label>
-            <div class="col-sm-8">
-                <input type="text" name="commento" id="commento" class="form-control" ng-model="commento.testoCommento" />
-            </div> 
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-8 col-sm-4">
-                <button type="submit" class="btn btn-info" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
-            </div>    
-        </div>
-    </form>
+    <div class="logout" ng-show="mostraLogout()">
+        <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a>
+        <a ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+    </div>
+    <div class="logout" ng-hide="mostraLogout()">
+        <a href="#/loginAnonimo"><span class="glyphicon glyphicon-home"></span> Home</a>
+    </div>
+    <div ng-repeat ="foto in listaF">
+        <div class="foto">
+            <img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
+        </div>  
+    </div>
+    <div ng-show="mostraErrFoto">{{messaggioFoto}}</div>
 </div>
 
-<div ng-repeat="commento in commenti">
-    <div class="commento"> 
-        <div class="form-group">
-            {{commento.utente.username}}
-            </br>
-            {{commento.testoCommento}}
-        </div>      
-    </div>
-</div> 
-   
+<div class="commenti">
+<div>
+        <h1>Lascia Commento</h1>
+        <form class="form-group">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">Commento:</label>
+                <div class="col-sm-11">
+                    <input type="text" name="commento" id="commento" class="form-control" ng-model="commento.testoCommento" />
+                </div> 
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button type="submit" class="btn btn-info" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
+                </div>    
+            </div>
+        </form>
+</div>
+    
+
+    
+        <div ng-repeat="commento in commenti" class="listaCommenti">
+          
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{commento.utente.username}}</label>
+                    {{commento.testoCommento}}
+                </div>      
+            
+        </div>
+    
+</div>
+

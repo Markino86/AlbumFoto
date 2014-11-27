@@ -1,4 +1,4 @@
-albumFotografico.controller('visualizzaFotoCtrl', function($scope,$routeParams, dataServices, $location, $sessionStorage) {
+albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $routeParams, dataServices, $location, $sessionStorage) {
     var confermaVisualizza = function (data) {
         if(data.codice === 0){
             $scope.album = $routeParams.nomeAlbum;
@@ -11,6 +11,18 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope,$routeParams, 
             $scope.mostraErrFoto = true;
         }    
     },
+    asyncCallbackCommento = function(risposta) {
+        if (risposta.codice === 0) {
+            $scope.commento = risposta.risultato;
+            $route.reload();
+//                                $scope.mostraLogin = false;
+//                                $location.path('/home');  
+        }
+        else {
+//                                $scope.mostraLogin = true;
+            $scope.messaggio = risposta.messaggio;
+        }
+    },
         visualizzaCommentiCallback = function (data) {
             if(data.codice === 0){
                 $scope.commenti = data.risultato;
@@ -21,6 +33,10 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope,$routeParams, 
         };
     
     dataServices.listaFoto($routeParams.nomeAlbum,confermaVisualizza);
+    
+    $scope.inviaCommento = function(commento){
+        dataServices.inviaCommento(commento, $routeParams.nomeAlbum, $sessionStorage.utente.username, asyncCallbackCommento);
+    };
     
     dataServices.visualizzaCommenti($routeParams.nomeAlbum, visualizzaCommentiCallback);
     

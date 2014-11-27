@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -110,6 +111,29 @@ public class AlbumController {
         } finally {
             return jsonResult;
         }
-
+    }
+    
+    @RequestMapping(name="/eliminaAlbum",method = RequestMethod.DELETE)
+    public @ResponseBody JsonResult deleteAlbum(HttpServletRequest req){
+        JsonResult js = new JsonResult();
+        String nomeAlbum = req.getParameter("nomeAlbum");
+        String username = req.getParameter("username");
+        try{
+            String path = "C:/Albums/" + username + "/" + nomeAlbum;
+            File dir = new File(path);
+            for(File f : dir.listFiles()){
+                f.delete();
+            }
+            dir.delete();
+            servizi.eliminaFotoAlbum(nomeAlbum);
+            servizi.eliminaAlbum(nomeAlbum);
+            js.setCodice(0);
+            js.setMessaggio("Album eliminato correttamente");
+        }catch(Exception ex){
+            js.setCodice(1);
+            js.setMessaggio("Problemi con il server");
+        }finally{
+            return js;
+        }
     }
 }

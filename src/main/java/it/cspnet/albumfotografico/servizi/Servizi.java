@@ -36,4 +36,8 @@ public interface Servizi {
 
     public Collection<Commento> visualizzaCommenti(String nomeAlbum);
        
+    public void eliminaAlbum(String nome);
+
+    public void eliminaFotoAlbum(String nomeAlbum);
+
 }
