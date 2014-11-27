@@ -10,9 +10,19 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope,$routeParams, 
             $scope.messaggioFoto = data.messaggio;
             $scope.mostraErrFoto = true;
         }    
-    };
+    },
+        visualizzaCommentiCallback = function (data) {
+            if(data.codice === 0){
+                $scope.commenti = data.risultato;
+            }  
+            else {
+                $scope.messaggio = data.messaggio;
+            }
+        };
     
     dataServices.listaFoto($routeParams.nomeAlbum,confermaVisualizza);
+    
+    dataServices.visualizzaCommenti($routeParams.nomeAlbum, visualizzaCommentiCallback);
     
     $scope.logout = function(){
         $sessionStorage.$reset();

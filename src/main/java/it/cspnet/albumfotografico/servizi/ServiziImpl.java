@@ -36,7 +36,7 @@ public class ServiziImpl implements Servizi {
     public void creaAlbum(Album album) {
         this.albumDao.save(album);
     }
-    
+
     public void setFotoDao(FotoDao fotoDao) {
         this.fotoDao = fotoDao;
     }
@@ -48,7 +48,7 @@ public class ServiziImpl implements Servizi {
     public void setCommentoDao(CommentoDao commentoDao) {
         this.commentoDao = commentoDao;
     }
-    
+
     @Override
     public void creaUtente(Utente utente) throws UtenteGiaPresenteException {
         if (null != this.utenteDao.findOne(utente.getUsername())) {
@@ -57,6 +57,7 @@ public class ServiziImpl implements Servizi {
             this.utenteDao.save(utente);
         }
     }
+
     @Override
     public Utente login(String username, String password) throws UserNotFoundException, WrongPasswordException, Exception {
         Utente u = utenteDao.findOne(username);
@@ -70,24 +71,29 @@ public class ServiziImpl implements Servizi {
             throw new UserNotFoundException();
         }
     }
+
     @Override
     public Collection<Album> listaAlbum(String username) {
         return this.utenteDao.findOne(username).getAlbums();
     }
+
     @Override
     public void salvaFoto(Foto foto, String nomeAlbum) {
         foto.setAlbum(albumDao.findOne(nomeAlbum));
         fotoDao.save(foto);
     }
+
     @Override
     public Collection<Foto> listaFoto(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
         return fotoDao.findByAlbumEquals(album);
     }
+
     @Override
     public Collection<Utente> listaUtenti() {
         return utenteDao.findAll();
     }
+
     @Override
     public Collection<Album> albumUtente(String username) {
         Utente u = utenteDao.findOne(username);
@@ -97,13 +103,14 @@ public class ServiziImpl implements Servizi {
     @Override
     public Album cambiaProprieta(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
-        if(album.getProprieta().equals("pubblico")){
+        if (album.getProprieta().equals("pubblico")) {
             album.setProprieta("privato");
-        }else{
+        } else {
             album.setProprieta("pubblico");
         }
         return albumDao.save(album);
     }
+
     @Override
     public Collection<Utente> listaNomi(String lettere) {
         return utenteDao.findByUsernameContaining(lettere);
@@ -113,11 +120,16 @@ public class ServiziImpl implements Servizi {
         Album album = albumDao.findOne(nomeAlbum);
         Utente utente = utenteDao.findOne(username);
         Commento c = new Commento();
-        c.setAlbum(album);        
+        c.setAlbum(album);
         c.setUtente(utente);
         c.setTestoCommento(commento);
         commentoDao.save(c);
-        return c;       
+        return c;
+    }
+
+    public Collection<Commento> visualizzaCommenti(String nomeAlbum) {
+        Album album = albumDao.findOne(nomeAlbum);
+        return commentoDao.findByAlbum(album);
     }
 
 }

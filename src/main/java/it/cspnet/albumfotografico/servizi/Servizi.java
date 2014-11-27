@@ -33,5 +33,7 @@ public interface Servizi {
     public Collection<Utente> listaNomi(String lettere);
     
     public Commento lasciaCommento(String commento, String nomeAlbum, String username);
+
+    public Collection<Commento> visualizzaCommenti(String nomeAlbum);
        
 }

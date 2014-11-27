@@ -73,7 +73,13 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                         success(function(data, status, headers, config) {
                             asyncCallbackCommento(data);
                 });
-            };
+            },
+            visualizzaCommenti = function(nomeAlbum, visualizzaCommentiCallback){
+                $http.get('visualizzaCommenti.do', {params: {nomeAlbum : nomeAlbum}}).
+                        success(function(data, status, headers, config) {
+                           visualizzaCommentiCallback(data); 
+                });
+            }
 
     return {
         creaAlbum: creaAlbum,
@@ -86,7 +92,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         albumUtente : albumUtente,
         cambiaProprieta : cambiaProprieta,
         listaNomi : listaNomi,
-        inviaCommento : inviaCommento
+        inviaCommento : inviaCommento,
+        visualizzaCommenti : visualizzaCommenti
     };
 
 });

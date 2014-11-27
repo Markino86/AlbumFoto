@@ -27,7 +27,6 @@
                 <th>Visualizza immagini</th>
                 <th>Cambia visibilità</th>
                 <th>Elimina album</th>
-                <th>Lascia un commento</th>
             </tr>    
         </thead>
         <tr ng-repeat="album in lista">
@@ -36,7 +35,6 @@
             <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
             <td>{{album.proprieta}} <a ng-click="cambiaProprieta(album);"><img class="imgTable" src="img/private-icon.png" alt="cambia" /></a></td>
             <td><img class="imgTable" src="img/elimina.png" alt="elimina"/></td>
-            <td><a href="#/lasciaCommento/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
         </tr>
     </table>
 </div>
