@@ -126,6 +126,7 @@ public class AlbumController {
             }
             dir.delete();
             servizi.eliminaFotoAlbum(nomeAlbum);
+            servizi.eliminaCommentiAlbum(nomeAlbum);
             servizi.eliminaAlbum(nomeAlbum);
             js.setCodice(0);
             js.setMessaggio("Album eliminato correttamente");
