@@ -10,6 +10,7 @@ import it.cspnet.albumfotografico.model.Album;
 import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.Utente;
 import java.util.Collection;
+import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ServiziImpl implements Servizi {
     public void creaAlbum(Album album) {
         this.albumDao.save(album);
     }
-
+    
     public void setFotoDao(FotoDao fotoDao) {
         this.fotoDao = fotoDao;
     }
@@ -40,7 +41,7 @@ public class ServiziImpl implements Servizi {
     public void setUtenteDao(UtenteDao utenteDao) {
         this.utenteDao = utenteDao;
     }
-
+    @Override
     public void creaUtente(Utente utente) throws UtenteGiaPresenteException {
         if (null != this.utenteDao.findOne(utente.getUsername())) {
             throw new UtenteGiaPresenteException();
@@ -48,12 +49,12 @@ public class ServiziImpl implements Servizi {
             this.utenteDao.save(utente);
         }
     }
-
+    @Override
     public Utente login(String username, String password) throws UserNotFoundException, WrongPasswordException, Exception {
-        Utente user = utenteDao.findOne(username);
-        if (user != null) {
-            if (password.equals(user.getPassword())) {
-                return user;
+        Utente u = utenteDao.findOne(username);
+        if (u != null) {
+            if (password.equals(u.getPassword())) {
+                return u;
             } else {
                 throw new WrongPasswordException();
             }
@@ -61,30 +62,31 @@ public class ServiziImpl implements Servizi {
             throw new UserNotFoundException();
         }
     }
-
+    @Override
     public Collection<Album> listaAlbum(String username) {
         return this.utenteDao.findOne(username).getAlbums();
     }
-
+    @Override
     public void salvaFoto(Foto foto, String nomeAlbum) {
         foto.setAlbum(albumDao.findOne(nomeAlbum));
         fotoDao.save(foto);
     }
-
+    @Override
     public Collection<Foto> listaFoto(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
         return fotoDao.findByAlbumEquals(album);
     }
-
+    @Override
     public Collection<Utente> listaUtenti() {
         return utenteDao.findAll();
     }
-
+    @Override
     public Collection<Album> albumUtente(String username) {
         Utente u = utenteDao.findOne(username);
         return albumDao.findByUtenteEquals(u);
     }
 
+    @Override
     public Album cambiaProprieta(String nomeAlbum) {
         Album album = albumDao.findOne(nomeAlbum);
         if(album.getProprieta().equals("pubblico")){
@@ -94,15 +96,21 @@ public class ServiziImpl implements Servizi {
         }
         return albumDao.save(album);
     }
-    
+    @Override
     public Collection<Utente> listaNomi(String lettere) {
         return utenteDao.findByUsernameContaining(lettere);
     }
-
-    public void eliminaAlbum(String nome) {
-        Album albumDaCancellare = albumDao.findOne(nome);
-        fotoDao.delete(albumDaCancellare.getNome());
-        albumDao.delete(albumDaCancellare);
+    @Override
+    public void eliminaFotoAlbum(String nomeAlbum) {
+        Album albumDaCancellare = albumDao.findOne(nomeAlbum);        
+        for (Foto f : fotoDao.findByAlbumEquals(albumDaCancellare)){
+            fotoDao.delete(f);
+        }
     }
 
+    @Override
+    public void eliminaAlbum(String nome) {
+        Album albumDaCancellare = albumDao.findOne(nome);
+        albumDao.delete(albumDaCancellare); 
+    }
 }

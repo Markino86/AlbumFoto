@@ -96,12 +96,27 @@ public class AlbumController {
     }
     
     @RequestMapping(name="/eliminaAlbum",method = RequestMethod.DELETE)
-    public @ResponseBody JsonResult deleteAlbum(@RequestBody Album album){
+    public @ResponseBody JsonResult deleteAlbum(HttpServletRequest req){
         JsonResult js = new JsonResult();
-        js.setCodice(0);
-        js.setMessaggio("Album eliminato correttamente");
-        servizi.eliminaAlbum(album.getNome());
-        return js;
+        String nomeAlbum = req.getParameter("nomeAlbum");
+        String username = req.getParameter("username");
+        try{
+            String path = "C:/Albums/" + username + "/" + nomeAlbum;
+            File dir = new File(path);
+            for(File f : dir.listFiles()){
+                f.delete();
+            }
+            dir.delete();
+            servizi.eliminaFotoAlbum(nomeAlbum);
+            servizi.eliminaAlbum(nomeAlbum);
+            js.setCodice(0);
+            js.setMessaggio("Album eliminato correttamente");
+        }catch(Exception ex){
+            js.setCodice(1);
+            js.setMessaggio("Problemi con il server");
+        }finally{
+            return js;
+        }
     }
 
 }

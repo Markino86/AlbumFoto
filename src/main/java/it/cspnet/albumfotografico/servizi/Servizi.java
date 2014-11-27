@@ -12,6 +12,7 @@ import java.util.Collection;
 public interface Servizi {
 
     public void creaAlbum(Album album);
+    
     public void creaUtente(Utente utente) throws UtenteGiaPresenteException;
 
     public Utente login(String username, String password) throws UserNotFoundException, WrongPasswordException, Exception;
@@ -31,6 +32,8 @@ public interface Servizi {
     public Collection<Utente> listaNomi(String lettere);
 
     public void eliminaAlbum(String nome);
+
+    public void eliminaFotoAlbum(String nomeAlbum);
 
    
 }

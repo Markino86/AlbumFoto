@@ -26,7 +26,7 @@ albumFotografico.config(['$routeProvider',
                     templateUrl: 'partials/visualizzaFoto-partial.html',
                     controller: 'visualizzaFotoCtrl'
                 }).
-                when('/loginAnonimo', {
+                when('/loginAnonimo/:username', {
                     templateUrl: 'partials/loginAnonimo-partial.html',
                     controller: 'loginAnonimoCtrl'
                 }).

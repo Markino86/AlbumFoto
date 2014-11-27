@@ -1,23 +1,8 @@
 <div class="logout">
     <a href="#/login">Return to login</a>
 </div>
-<h1>Lista degli utenti</h1>
 <div class="col-md-5">
-<table class="table table-bordered centrato">
-    <thead>
-        <tr>
-            <th>Utente</th>
-            <th>Visualizza album</th>
-        </tr>    
-    </thead>
-        <tr ng-repeat="utente in utenti">
-            <td>{{utente.username}}</td>
-            <td><img src="img/album.jpg" class="imgTable" alt="album" ng-click="albumUtente(utente.username)"></td>
-        </tr>
-</table>
-</div>    
-<div ng-show="mostraNoUtenti">{{messNoUtenti}}</div>
-<div class="col-md-5" ng-show="mostraTabella">
+<h1>Album dell'utente {{utente}}</h1>    
 <table class="table table-bordered centrato">
     <thead>
         <tr>
@@ -28,7 +13,6 @@
     <tr ng-repeat="album in albums">
             <td>{{album.nome}}</td>
             <td><a href="#/visualizzaFoto/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
-            <td><a href="#/lasciaCommento/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
         </tr>
 </table>
 </div>   

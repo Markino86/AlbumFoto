@@ -25,10 +25,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody JsonResult loginUtente(@RequestBody Utente utente) {
         JsonResult jsr = new JsonResult();
-        Utente u = null;
         try {
-            u =  servizi.login(utente.getUsername(), utente.getPassword());
-            jsr.setRisultato(u);
+            jsr.setRisultato(servizi.login(utente.getUsername(), utente.getPassword()));
             jsr.setCodice(0);
         } catch (UserNotFoundException ex) {
             jsr.setCodice(1);

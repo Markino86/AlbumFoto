@@ -5,6 +5,8 @@ import it.cspnet.albumfotografico.model.JsonResult;
 import it.cspnet.albumfotografico.model.Utente;
 import it.cspnet.albumfotografico.servizi.Servizi;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,9 +41,14 @@ public class UtentiController {
     public @ResponseBody JsonResult albumUtente(HttpServletRequest req) {
         String username = req.getParameter("username");
         JsonResult jsr = new JsonResult();
-        Collection<Album> albums = null;
         try {
-            albums =  servizi.albumUtente(username);
+            Set<Album> albums = new HashSet<Album>();
+            for(Album a : servizi.albumUtente(username) ){
+                if(a.getProprieta().equals("privato"))
+                    albums.remove(a);
+                else
+                    albums.add(a);
+            }    
             jsr.setRisultato(albums);
             jsr.setCodice(0);
         } catch (Exception ex) {

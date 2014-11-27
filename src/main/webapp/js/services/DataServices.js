@@ -62,8 +62,8 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
                             callbackCambiaProprieta(data);
                         });
             },
-            eliminaAlbum = function(album,callbackEliminaAlbum){
-                $http.delete('eliminaAlbum.do',album).
+            eliminaAlbum = function(nomeAlbum,username,callbackEliminaAlbum){
+                $http.delete('eliminaAlbum.do?nomeAlbum='+nomeAlbum+'&username='+username).
                         success(function(data,status,headers,config){
                             callbackEliminaAlbum(data);
                         });

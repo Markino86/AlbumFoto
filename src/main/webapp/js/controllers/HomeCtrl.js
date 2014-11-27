@@ -39,9 +39,8 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
         }
      },callbackEliminaAlbum = function(data){
         if(data.codice===0)
-            $scope.messaggio = data.messaggio;
-            $location.path("/home");
-         
+            toastr.success(data.messaggio);
+            $route.reload(); 
      }; 
     
     $scope.creaAlbum = function (album) {
@@ -56,8 +55,18 @@ albumFotografico.controller('HomeCtrl', function ($scope,$route, dataServices, $
         dataServices.cambiaProprieta(album,callbackCambiaProprieta);
     };
     
-    $scope.eliminaAlbum = function(album){
-        dataServices.eliminaAlbum(album,callbackEliminaAlbum);
+    $scope.eliminaAlbum = function(nomeAlbum){
+        $("#delete").click(
+            function(){
+            var confirmation = confirm("Sei sicuro di voler cancellare l'album?Proseguendo cancellerai tutte le foto al suo interno.");
+            if (confirmation){
+                //L'utente vuole eseguire l'operazione
+                var id = $(this).attr("data-id");
+                dataServices.eliminaAlbum(nomeAlbum,$sessionStorage.utente.username,callbackEliminaAlbum);
+            }else{
+                //ciupa
+            }
+        });
     };
     
     $scope.logout = function(){

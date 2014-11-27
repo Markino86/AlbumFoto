@@ -31,9 +31,9 @@
             <input type="text" placeholder="username" ng-model="lettere" ng-keyup="listaNomi(lettere)" />
         </form>
     <div ng-show="mostraUtenti">
-        <table>
+        <table class="table table-hover">
             <tr ng-repeat="nomeUtente in nomiUtenti">
-                <td>{{nomeUtente.username}}</td>
+                <td><a href="#/loginAnonimo/{{nomeUtente.username}}">{{nomeUtente.username}}</a></td>
             </tr>
         </table> 
     </div>
