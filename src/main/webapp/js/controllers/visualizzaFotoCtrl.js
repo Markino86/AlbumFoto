@@ -1,3 +1,4 @@
+
 albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $routeParams, dataServices, $location, $sessionStorage) {
 
     var confermaVisualizza = function (data) {
@@ -12,17 +13,13 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $rout
             $scope.messaggioFoto = data.messaggio;
             $scope.mostraErrFoto = true;
         }    
-
     },
     asyncCallbackCommento = function(risposta) {
         if (risposta.codice === 0) {
             $scope.commento = risposta.risultato;
             $route.reload();
-//                                $scope.mostraLogin = false;
-//                                $location.path('/home');  
         }
         else {
-//                                $scope.mostraLogin = true;
             $scope.messaggio = risposta.messaggio;
         }
     },
@@ -65,7 +62,8 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $rout
     
     $scope.eliminaSingleFoto = function(nomeFoto){
         dataServices.eliminaSingleFoto(nomeFoto,eliminaFotoCallback)
-    }       
+    }
+       
 });
 
 

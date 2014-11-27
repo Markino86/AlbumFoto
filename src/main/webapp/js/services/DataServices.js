@@ -108,6 +108,7 @@ albumFotografico.factory('dataServices', function($http, $sessionStorage) {
         visualizzaCommenti : visualizzaCommenti,
         eliminaAlbum : eliminaAlbum,
         eliminaSingleFoto : eliminaSingleFoto
+       
     };
 });
 
