@@ -1,18 +1,29 @@
-<div class="logout">
-    <a href="#/login">Return to login</a>
-</div>
-<div class="col-md-5">
-<h1>Album dell'utente {{utente}}</h1>    
-<table class="table table-bordered centrato">
-    <thead>
-        <tr>
-            <th>Album</th>
-            <th>Visualizza foto</th>
-        </tr>    
-    </thead>
-    <tr ng-repeat="album in albums">
-            <td>{{album.nome}}</td>
-            <td><a href="#/visualizzaFoto/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
-        </tr>
-</table>
+<nav class="navbar navbar-default" role="navigation">  
+    <div class="collapse navbar-collapse" id="menu-navbar">
+        <ul class="nav navbar-nav">
+            <li><a href="#/home" ng-show="mostraLogout();"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a href="#" ng-hide="mostraLogout();"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click="logout()" ng-show="mostraLogout();"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>            
+    </div>
+</nav>
+
+<div>
+    <div class="col-md-5">
+        <h1>Album dell'utente {{utente}}</h1>    
+        <table class="table table-bordered centrato">
+            <thead>
+                <tr>
+                    <th>Album</th>
+                    <th>Visualizza foto</th>
+                </tr>    
+            </thead>
+            <tr ng-repeat="album in albums">
+                <td>{{album.nome}}</td>
+                <td><a href="#/visualizzaFoto/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
+            </tr>
+        </table>
+    </div>
 </div>   

@@ -4,7 +4,7 @@ html,body {
     background-image: url("bg.png");
     background-size: 100%;
     background-repeat: repeat-y;
-    
+
 }
 .container{
     width: 100%;
@@ -14,7 +14,7 @@ html,body {
     height: auto !important;  
     height: 100%;  
     margin: 0 auto -80px;
-    
+
 }
 .myheader {
     height: 120px;
@@ -96,12 +96,18 @@ th{
 .bottoneScegli> button{
     background-color: red;
 }
-.foto img{
+.box img{
+    float: left;
     margin-top: 10px;
     margin-left: 20px;
     height: 300px;
     width: 350px;
     border: 1px solid #00cc33;
+}
+.after-box {
+    clear: left;
+    position: relative; 
+    top: 10px;
 }
 .alert {
     width: 335px;
@@ -133,7 +139,7 @@ th{
     width: 155px;    
 }
 h2{
-   text-align: center;
+    text-align: center;
 }
 .cercaHome{
     float:left;
@@ -142,15 +148,15 @@ h2{
     border-left: 1px solid #6699ff;
     border-right: 1px solid #6699ff;
     border-bottom: 1px solid #6699ff;
-    margin-top: -38px;
-    width: 155px;  
+    margin-top: -31px;
+    width: 177px;
 }
 .form form-inline {
     margin-left: 10px;
 }
 .listaCommenti{
     margin-top: 10px;
-    margin-left: 30px;
+    margin-left: 41px;
     background-color: #cccccc;
     border: 1px solid #000;
     width: 355px;
