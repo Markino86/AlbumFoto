@@ -152,4 +152,19 @@ public class ServiziImpl implements Servizi {
     public void eliminaSingleFoto(String nomeFoto) {
         fotoDao.delete(fotoDao.findOne(nomeFoto));
     }
+
+    @Override
+    public void eliminaCommentiAlbum(String nomeAlbum) {
+        Album albumDaCancellare = albumDao.findOne(nomeAlbum);        
+        for (Commento c : commentoDao.findByAlbum(albumDaCancellare)){
+            commentoDao.delete(c);
+        }
+    }
+
+    @Override
+    public Album trovaAlbum(String nomeAlbum) {
+        return albumDao.findOne(nomeAlbum);
+    }
+
+    
 }

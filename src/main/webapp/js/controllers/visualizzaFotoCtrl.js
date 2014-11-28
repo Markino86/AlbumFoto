@@ -38,6 +38,14 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $rout
         else {
             toastr.error(data.messaggio);
         }  
+    },
+    mostraEliminaCallback = function(data){
+        if(data.codice === 0){
+            $scope.mostraElimina=true;
+        }
+        else {
+            $scope.mostraElimina=false;
+        }
     };
     
     dataServices.listaFoto($routeParams.nomeAlbum,confermaVisualizza);
@@ -60,9 +68,11 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $rout
     };
     
     $scope.eliminaSingleFoto = function(nomeFoto){
-        dataServices.eliminaSingleFoto(nomeFoto,eliminaFotoCallback);
+        dataServices.eliminaSingleFoto(nomeFoto,eliminaFotoCallback)
     };
-       
+    
+    dataServices.mostraElimina($routeParams.nomeAlbum, $sessionStorage.utente.username, mostraEliminaCallback);     
+    
 });
 
 

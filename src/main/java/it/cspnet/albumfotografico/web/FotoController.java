@@ -1,5 +1,6 @@
 package it.cspnet.albumfotografico.web;
 
+import it.cspnet.albumfotografico.model.Album;
 import it.cspnet.albumfotografico.model.Foto;
 import it.cspnet.albumfotografico.model.JsonResult;
 import it.cspnet.albumfotografico.servizi.Servizi;
@@ -23,41 +24,42 @@ public class FotoController {
     public void setServizi(Servizi servizi) {
         this.servizi = servizi;
     }
+
     @RequestMapping(value = "/salvafoto", method = RequestMethod.POST)
     public @ResponseBody
-    JsonResult salvaFoto(@RequestParam("file") MultipartFile file, @RequestParam("nomeAlbum") String nomeAlbum, @RequestParam("username") String username ) {
+    JsonResult salvaFoto(@RequestParam("file") MultipartFile file, @RequestParam("nomeAlbum") String nomeAlbum, @RequestParam("username") String username) {
         JsonResult js = new JsonResult();
         try {
             String path = "C:/Albums/" + username + "/" + nomeAlbum + "/";
-            File fileCreato = new File (path + file.getOriginalFilename());
-            if(fileCreato.exists()){
+            File fileCreato = new File(path + file.getOriginalFilename());
+            if (fileCreato.exists()) {
                 js.setCodice(2);
-                js.setMessaggio("Il file:" + file.getOriginalFilename()+" è già presente nell'album" );
+                js.setMessaggio("Il file:" + file.getOriginalFilename() + " è già presente nell'album");
                 return js;
             }
             file.transferTo(fileCreato);
             Foto foto = new Foto();
-            foto.setNome("Albums/"+ username + "/" + nomeAlbum + "/" + file.getOriginalFilename());
+            foto.setNome("Albums/" + username + "/" + nomeAlbum + "/" + file.getOriginalFilename());
             servizi.salvaFoto(foto, nomeAlbum);
             js.setCodice(0);
             js.setMessaggio("Complimenti hai caricato il file: " + file.getOriginalFilename());
             return js;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             js.setCodice(1);
             js.setMessaggio("Errore sul server!!");
             return js;
         }
     }
+
     @RequestMapping(value = "/listaFoto", method = RequestMethod.GET)
     public @ResponseBody
-    JsonResult listaFoto(HttpServletRequest req ) {
+    JsonResult listaFoto(HttpServletRequest req) {
         JsonResult js = new JsonResult();
         String nomeAlbum = req.getParameter("nomeAlbum");
         Collection<Foto> foto = null;
         try {
             foto = servizi.listaFoto(nomeAlbum);
-            if(foto.isEmpty()){
+            if (foto.isEmpty()) {
                 js.setCodice(1);
                 js.setMessaggio("Nessuna foto nell'album");
                 return js;
@@ -65,19 +67,19 @@ public class FotoController {
             js.setRisultato(foto);
             js.setCodice(0);
             return js;
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             js.setCodice(1);
             js.setMessaggio("Errore sul server!!");
             return js;
         }
     }
-    
-    @RequestMapping(value = "/eliminaFoto",method = RequestMethod.DELETE)
+
+    @RequestMapping(value = "/eliminaFoto", method = RequestMethod.DELETE)
     public @ResponseBody
-    JsonResult eliminaSingleFoto(HttpServletRequest req){
+    JsonResult eliminaSingleFoto(HttpServletRequest req) {
         JsonResult js = new JsonResult();
         String nomeFoto = req.getParameter("nomeFoto");
-         try {
+        try {
             servizi.eliminaSingleFoto(nomeFoto);
             String path = "C:/" + nomeFoto;
             File dir = new File(path);
@@ -85,11 +87,30 @@ public class FotoController {
             js.setCodice(0);
             js.setMessaggio("Foto eliminata con successo");
             return js;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             js.setCodice(1);
             js.setMessaggio("Errore sul server!!");
             return js;
+        }
+    }
+
+    @RequestMapping(value = "/mostraElimina", method = RequestMethod.GET)
+    public @ResponseBody
+    JsonResult mostraElimina(HttpServletRequest req) {
+        JsonResult jsonResult = new JsonResult();
+        String nomeAlbum = req.getParameter("nomeAlbum");
+        String username = req.getParameter("username");
+        try {
+            Album album = servizi.trovaAlbum(nomeAlbum);
+            if (username.equals(album.getUtente().getUsername())) {
+                jsonResult.setCodice(0);
+            } else {
+                jsonResult.setCodice(1);
+            }
+            return jsonResult;
+        } catch (Exception ex) {
+            jsonResult.setCodice(2);
+            return jsonResult;
         }
     }
 }
