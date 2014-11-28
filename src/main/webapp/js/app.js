@@ -1,4 +1,4 @@
-var albumFotografico = angular.module('albumFotografico', ['ngRoute', 'ngStorage']);
+var albumFotografico = angular.module('albumFotografico', ['ngRoute', 'ngStorage', 'ui.bootstrap']);
 albumFotografico.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
