@@ -12,32 +12,15 @@
         </div>  
     </div>
     <div ng-show="mostraErrFoto">{{messaggioFoto}}</div>
-</div>
-
-<div class="commenti">
-<div>
-        <h1>Lascia Commento</h1>
-        <form class="form-group">
+    <form class="form form-inline" ng-show="mostraLasciaCommento">
+            <h3>Lascia Commento</h3>
             <div class="form-group">
-                <label class="col-sm-1 control-label">Commento:</label>
-                <div class="col-sm-11">
-                    <input type="text" name="commento" id="commento" class="form-control" ng-model="commento.testoCommento" />
-                </div> 
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-8 col-sm-4">
-                    <button type="submit" class="btn btn-info" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
-                </div>    
-            </div>
-        </form>
-</div>
-        <div ng-repeat="commento in commenti" class="listaCommenti">
-          
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">{{commento.utente.username}}</label>
-                    {{commento.testoCommento}}
-                </div>      
-            
-        </div>
-    
-</div>
+                <input type="text" name="commento" id="commento" ng-model="commento.testoCommento" />
+                <button type="submit" class="btn btn-info" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
+            </div>    
+    </form>
+    <div ng-repeat="commento in commenti" class="listaCommenti">
+        <label>{{commento.utente.username}}</label>
+        <p>{{commento.testoCommento}}</p>
+    </div> 
+</div>    

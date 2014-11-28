@@ -98,8 +98,7 @@ th{
 }
 .foto img{
     margin-top: 10px;
-    float: left;
-    margin-left: 15px;
+    margin-left: 20px;
     height: 300px;
     width: 350px;
     border: 1px solid #00cc33;
@@ -146,17 +145,15 @@ h2{
     margin-top: -38px;
     width: 155px;  
 }
-
-.commenti{
-    float: left;
-    width: 100%;
-    margin-bottom: 50px;
+.form form-inline {
+    margin-left: 10px;
 }
 .listaCommenti{
+    margin-left: 40px;
     background-color: #cccccc;
-    border-bottom: 1px solid #000;    
+    border: 1px solid #000;
+    width: 355px;
 }
-
 .eliminaFoto{
     border: 1px solid #cccccc;
     position: absolute;
@@ -180,4 +177,7 @@ h2{
     width: 250px;
     text-align: center;
 }
-
+#commento{
+    width: 300px;
+    height: 33px;
+}

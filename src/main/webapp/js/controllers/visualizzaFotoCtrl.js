@@ -1,4 +1,3 @@
-
 albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $routeParams, dataServices, $location, $sessionStorage) {
 
     var confermaVisualizza = function (data) {
@@ -61,8 +60,8 @@ albumFotografico.controller('visualizzaFotoCtrl', function($scope, $route, $rout
     };
     
     $scope.eliminaSingleFoto = function(nomeFoto){
-        dataServices.eliminaSingleFoto(nomeFoto,eliminaFotoCallback)
-    }
+        dataServices.eliminaSingleFoto(nomeFoto,eliminaFotoCallback);
+    };
        
 });
 
