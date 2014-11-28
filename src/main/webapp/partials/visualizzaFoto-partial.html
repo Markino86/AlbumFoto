@@ -11,7 +11,7 @@
             <button class="eliminaFoto" ng-click="eliminaSingleFoto(foto.nome);" ng-show="mostraElimina"><span class="glyphicon glyphicon-trash"></span></button><img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
         </div>  
     </div>
-    <div ng-show="mostraErrFoto">{{messaggioFoto}}</div>
+    <div class="noFoto" ng-show="mostraErrFoto">{{messaggioFoto}}</div>
     <form class="form form-inline" ng-show="mostraLogout();">
             <h3>Lascia Commento</h3>
 
