@@ -48,7 +48,12 @@ public class UtentiController {
                     albums.remove(a);
                 else
                     albums.add(a);
-            }    
+            } 
+            if(albums.isEmpty()){
+                jsr.setCodice(1);
+                jsr.setMessaggio("Non ci sono album presenti per questo utente");
+                return jsr;
+            }
             jsr.setRisultato(albums);
             jsr.setCodice(0);
         } catch (Exception ex) {

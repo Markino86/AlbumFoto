@@ -63,31 +63,36 @@ public class AlbumController {
         String username = req.getParameter("username");
         try {
             albums = servizi.listaAlbum(username);
+            if(albums.isEmpty()){
+                jsonResult.setCodice(1);
+                jsonResult.setMessaggio("Non hai ancora creato nessun album");
+                return jsonResult;
+            }
             jsonResult.setRisultato(albums);
             jsonResult.setCodice(0);
             jsonResult.setMessaggio("ok");
+            return jsonResult;
         } catch (Exception ex) {
             jsonResult.setMessaggio("errore caricamento");
             jsonResult.setCodice(1);
-        } finally {
             return jsonResult;
-        }
+        }   
     }
-    
-    @RequestMapping(name = "/cambiaProprieta",method = RequestMethod.PUT)
-    public @ResponseBody 
-    JsonResult cambiaProprieta(@RequestBody Album album){
+
+    @RequestMapping(name = "/cambiaProprieta", method = RequestMethod.PUT)
+    public @ResponseBody
+    JsonResult cambiaProprieta(@RequestBody Album album) {
         JsonResult js = new JsonResult();
-        
-        try{
+
+        try {
             Album albumDaModificare = servizi.cambiaProprieta(album.getNome());
             js.setCodice(0);
             js.setMessaggio("Proprietà cambiata correttamente!");
             js.setRisultato(albumDaModificare);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             js.setCodice(1);
             js.setMessaggio("Impossibile cambiare la proprietà di visualizzazione");
-        }finally{
+        } finally {
             return js;
         }
     }
@@ -97,11 +102,9 @@ public class AlbumController {
     JsonResult inviaCommento(@RequestBody String commento, HttpServletRequest req) {
         JsonResult jsonResult = new JsonResult();
         String nomeAlbum = req.getParameter("nomeAlbum");
-        //NON PRENDE USERNAME CHE PASSO
         String username = req.getParameter("username");
         try {
             Commento c = servizi.lasciaCommento(commento, nomeAlbum, username);
-//            Commento c = servizi.lasciaCommento(commento, username);
             jsonResult.setRisultato(c);
             jsonResult.setCodice(0);
             jsonResult.setMessaggio("ok");
@@ -112,16 +115,17 @@ public class AlbumController {
             return jsonResult;
         }
     }
-    
-    @RequestMapping(name="/eliminaAlbum",method = RequestMethod.DELETE)
-    public @ResponseBody JsonResult deleteAlbum(HttpServletRequest req){
+
+    @RequestMapping(name = "/eliminaAlbum", method = RequestMethod.DELETE)
+    public @ResponseBody
+    JsonResult deleteAlbum(HttpServletRequest req) {
         JsonResult js = new JsonResult();
         String nomeAlbum = req.getParameter("nomeAlbum");
         String username = req.getParameter("username");
-        try{
+        try {
             String path = "C:/Albums/" + username + "/" + nomeAlbum;
             File dir = new File(path);
-            for(File f : dir.listFiles()){
+            for (File f : dir.listFiles()) {
                 f.delete();
             }
             dir.delete();
@@ -130,10 +134,10 @@ public class AlbumController {
             servizi.eliminaAlbum(nomeAlbum);
             js.setCodice(0);
             js.setMessaggio("Album eliminato correttamente");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             js.setCodice(1);
             js.setMessaggio("Problemi con il server");
-        }finally{
+        } finally {
             return js;
         }
     }

@@ -7,8 +7,14 @@ albumFotografico.controller('HomeCtrl', function ($scope, $route, dataServices, 
         else {
             toastr.error(data.messaggio)
         }
-    }, stampaListaAlbum = function (risposta) {
-        $scope.lista = risposta.risultato;
+    }, stampaListaAlbum = function (data) {
+        if(data.codice===0){
+            $scope.lista = data.risultato;
+            $scope.mostraAlbumUtenti = true;
+        }else{
+            $scope.mostraAlbumUtenti = false;
+            $scope.messaggioNoAlbum = data.messaggio;
+        }  
     }, isNotEmpty = function () {
         toastr.options = {
             "closeButton": true,

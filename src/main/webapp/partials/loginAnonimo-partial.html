@@ -13,7 +13,7 @@
 <div>
     <div class="col-md-5">
         <h1>Album dell'utente {{utente}}</h1>    
-        <table class="table table-bordered centrato">
+        <table ng-show="mostraAlbumUtenti" class="table table-bordered centrato">
             <thead>
                 <tr>
                     <th>Album</th>
@@ -25,5 +25,6 @@
                 <td><a href="#/visualizzaFoto/{{album.nome}}"><img src="img/foto.jpg" alt="foto" class="imgTable"></a></td>
             </tr>
         </table>
+        <div class="noAlbum" ng-hide="mostraAlbumUtenti">{{messaggioNoAlbum}}</div>
     </div>
 </div>   

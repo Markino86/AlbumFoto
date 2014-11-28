@@ -3,6 +3,10 @@ albumFotografico.controller('loginAnonimoCtrl', function($scope,$routeParams,$se
             if (data.codice === 0){
                 $scope.utente = $routeParams.username;
                 $scope.albums = data.risultato;
+                $scope.mostraAlbumUtenti = true;
+            }else{
+                $scope.mostraAlbumUtenti = false;
+                $scope.messaggioNoAlbum = data.messaggio;
             }
         };
     dataServices.albumUtente($routeParams.username,callbackAlbumUtente);  

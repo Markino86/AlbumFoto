@@ -26,7 +26,7 @@
             </tr>
         </table> 
     </div>
-    <table class="table table-bordered centrato">
+    <table ng-show="mostraAlbumUtenti" class="table table-bordered centrato">
         <thead>
             <tr>
                 <th>Album</th>
@@ -44,6 +44,7 @@
             <td><a><img class="imgTable" ng-click="eliminaAlbum(album.nome);" id="del" src="img/elimina.png" alt="elimina"/></a></td>
         </tr>
     </table>
+    <div class="noAlbum" ng-hide="mostraAlbumUtenti">{{messaggioNoAlbum}}</div>
 </div>
 
 <script type="text/ng-template" id="eliminaAlert.html">
