@@ -41,8 +41,21 @@
             <td><a href="#/uploadFoto/{{album.nome}}"><img class="imgTable" src="img/aggiungi.png" alt="aggiungi"/></a></td>
             <td><a href="#/visualizzaFoto/{{album.nome}}"><img class="imgTable" src="img/visualizza.png" alt="visualizza"/></a></td>
             <td>{{album.proprieta}} <a ng-click="cambiaProprieta(album);"><img class="imgTable" src="img/private-icon.png" alt="cambia" /></a></td>
-            <td><a ng-click="eliminaAlbum(album.nome);" id="delete" data-id="numero-id"><img class="imgTable" src="img/elimina.png" alt="elimina"/></a></td>
+            <td><a><img class="imgTable" ng-click="eliminaAlbum(album.nome);" id="del" src="img/elimina.png" alt="elimina"/></a></td>
         </tr>
     </table>
 </div>
 
+<script type="text/ng-template" id="eliminaAlert.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Conferma cancellazione album</h3>
+        </div>
+        <div class="modal-body">
+            Sei sicuro di voler cancellare questo?<br />
+            Ti ricordiamo che eliminerai anche tutte le foto contenuto in esso!
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="ok()">OK</button>
+            <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>

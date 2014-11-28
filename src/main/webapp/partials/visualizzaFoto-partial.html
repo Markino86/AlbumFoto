@@ -15,7 +15,7 @@
     <div ng-repeat="foto in listaF">
         <div class="box">
             <button class="eliminaFoto" ng-click="eliminaSingleFoto(foto.nome);" ng-show="mostraElimina"><span class="glyphicon glyphicon-trash"></span></button><img src="../{{foto.nome}}" alt="foto +{{foto.nome}}">
-        </div>  
+        </div> 
     </div>
     <div class="noFoto" ng-show="mostraErrFoto">{{messaggioFoto}}</div>
     <div class="after-box">
@@ -23,7 +23,7 @@
             <h3>Lascia Commento</h3>
             <div class="form-group">
                 <input type="text" name="commento" id="commento" ng-model="commento.testoCommento" />
-                <button type="submit" class="btn btn-info" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
+                <button type="submit" class="btn btn-success" ng-click="inviaCommento(commento.testoCommento)">Invia</button>
             </div>    
         </form>
         <div ng-repeat="commento in commenti" class="listaCommenti">
